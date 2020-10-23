@@ -12,7 +12,18 @@ namespace NoteApp
     {
         public MainPage()
         {
+            // Info
+            Title = "Poznámky";
+
             InitializeComponent();
+        }
+
+        async private void AddButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddNote
+            {
+                BindingContext = new Note()
+            });
         }
     }
 }

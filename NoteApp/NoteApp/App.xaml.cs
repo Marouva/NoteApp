@@ -13,14 +13,14 @@ namespace NoteApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
-
-            // DB
-            Notes.Connect(DBPath);
+            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
         {
+            // DB
+            Notes.Connect(DBPath);
         }
 
         protected override void OnSleep()
