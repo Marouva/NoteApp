@@ -6,10 +6,7 @@
         <ScrollView>
             <StackLayout Margin="16">
                 <!-- Notes -->
-                <StackLayout x:Name="NotesContainer">
-                    <Label Text="test"/>
-                    <Label Text="test"/>
-                </StackLayout>
+                <StackLayout x:Name="NotesContainer"></StackLayout>
 
                 <!-- Add button -->
                 <Button x:Name="AddButton" Text="Přidat poznámku" Clicked="AddButton_Clicked"/>

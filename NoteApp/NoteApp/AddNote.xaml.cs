@@ -22,7 +22,22 @@ namespace NoteApp
 
         private void Submit_Clicked(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(Name.Text) ||
+                String.IsNullOrWhiteSpace(Text.Text))
+                return;
 
+            Note newNote = new Note
+            {
+                Name       = Name.Text,
+                Text       = Text.Text,
+                CreateDate = DateTime.Now
+            };
+
+            // Update
+            Notes.SaveNote(newNote).Wait();
+
+            Navigation.PopAsync();
+            App.MainPage.Update();
         }
     }
 }

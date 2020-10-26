@@ -9,18 +9,23 @@ namespace NoteApp
     {
         public static readonly string DBPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3");
 
+        public static new MainPage MainPage { get; set; }
+
         public App()
         {
             InitializeComponent();
+            
+            // DB
+            Notes.Connect(DBPath);
 
+            // Page
             //MainPage = new MainPage();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new MainPage();
+            base.MainPage = new NavigationPage(MainPage);
         }
 
         protected override void OnStart()
-        {
-            // DB
-            Notes.Connect(DBPath);
+        {            
         }
 
         protected override void OnSleep()

@@ -28,8 +28,7 @@ namespace NoteApp
         #region params
 
         private static SQLiteAsyncConnection connection;
-
-        
+                
         #endregion
 
         public static void Connect(string dbPath)
@@ -40,7 +39,7 @@ namespace NoteApp
 
         #region queries
 
-        public static Task<List<Note>> GetNotesAsync()
+        public static Task<List<Note>> GetNotes()
         {
             return connection.Table<Note>().ToListAsync();
         }
