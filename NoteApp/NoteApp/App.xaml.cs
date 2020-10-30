@@ -19,7 +19,6 @@ namespace NoteApp
             Notes.Connect(DBPath);
 
             // Page
-            //MainPage = new MainPage();
             MainPage = new MainPage();
             base.MainPage = new NavigationPage(MainPage);
         }

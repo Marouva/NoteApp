@@ -30,7 +30,8 @@ namespace NoteApp
             {
                 Name       = Name.Text,
                 Text       = Text.Text,
-                CreateDate = DateTime.Now
+                CreateDate = DateTime.Now,
+                ModifyDate = DateTime.Now
             };
 
             // Update

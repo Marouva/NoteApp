@@ -5,11 +5,11 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="16">
-                <!-- Notes -->
-                <StackLayout x:Name="NotesContainer"></StackLayout>
-
                 <!-- Add button -->
                 <Button x:Name="AddButton" Text="Přidat poznámku" Clicked="AddButton_Clicked"/>
+                
+                <!-- Notes -->
+                <StackLayout x:Name="NotesContainer"></StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

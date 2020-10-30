@@ -66,11 +66,6 @@ namespace NoteApp
             return connection.DeleteAsync(note);
         }
 
-        public static Task<int> DeleteNoteById(int id)
-        {
-            return connection.DeleteAsync(connection.Table<Note>().Where(i => i.ID == id).FirstOrDefaultAsync());
-        }
-
         #endregion
     }
 }

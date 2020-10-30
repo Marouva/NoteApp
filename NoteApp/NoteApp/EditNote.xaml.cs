@@ -19,6 +19,9 @@ namespace NoteApp
             EditedNote = note;
 
             InitializeComponent();
+
+            Name.Text = EditedNote.Name;
+            Text.Text = EditedNote.Text;
         }
 
         private void Submit_Clicked(object sender, EventArgs e)
@@ -27,8 +30,8 @@ namespace NoteApp
                 String.IsNullOrWhiteSpace(Text.Text))
                 return;
 
-            EditedNote.Name = Name.Text;
-            EditedNote.Text = Text.Text;
+            EditedNote.Name       = Name.Text;
+            EditedNote.Text       = Text.Text;
             EditedNote.ModifyDate = DateTime.Now;
 
             // Update
