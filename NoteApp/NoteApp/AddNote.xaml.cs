@@ -26,12 +26,14 @@ namespace NoteApp
                 String.IsNullOrWhiteSpace(Text.Text))
                 return;
 
+            DateTime currDate = DateTime.Now;
+
             Note newNote = new Note
             {
                 Name       = Name.Text,
                 Text       = Text.Text,
-                CreateDate = DateTime.Now,
-                ModifyDate = DateTime.Now
+                CreateDate = currDate,
+                ModifyDate = currDate
             };
 
             // Update

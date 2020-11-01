@@ -33,6 +33,7 @@ namespace NoteApp
             // Fill container
             foreach (Note note in notes)
             {
+                // Element container
                 Frame noteFrame = new Frame
                 {
                     Padding = 16
@@ -44,45 +45,71 @@ namespace NoteApp
                     Spacing     = 8
                 };
 
-                Label noteName = new Label
+                // Name + Edit button
+                Grid noteNameLayout = new Grid
                 {
-                    Text          = note.Name,
-                    FontSize      = 24,
-                    TextColor     = Color.Black,
-                    LineBreakMode = LineBreakMode.WordWrap
+                    ColumnDefinitions =
+                    {
+                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                        new ColumnDefinition { Width = new GridLength(32) }
+                    }
                 };
 
-                Label noteDate = new Label
+                Label noteNameLabel = new Label
                 {
-                    Text          = note.CreateDate.ToString("dd. MM. yyyy, hh:mm") +
-                                    (note.ModifyDate == note.CreateDate ? "" : ("\n(upraveno " + note.ModifyDate.ToString("dd. MM. yyyy, hh:mm") + ")")),
-                    FontSize      = 16,
-                    LineBreakMode = LineBreakMode.WordWrap
+                    Text            = note.Name,
+                    FontSize        = 24,
+                    FontAttributes  = FontAttributes.Bold,
+                    TextColor       = Color.Black,
+                    LineBreakMode   = LineBreakMode.WordWrap,
+                    VerticalOptions = LayoutOptions.Center
                 };
 
-                Label noteText = new Label
+                Button noteButton = new Button
+                {
+                    Text            = "⋮",
+                    FontSize        = 24,
+                    FontAttributes  = FontAttributes.Bold,
+                    BackgroundColor = Color.Transparent,
+                    VerticalOptions = LayoutOptions.Center
+                };
+
+                noteButton.Clicked += (object sender, EventArgs e) => { EditNoteMenuAsync(note); };
+
+                noteNameLayout.Children.Add(noteNameLabel, 0, 0);
+                noteNameLayout.Children.Add(noteButton,    1, 0);
+
+                noteLayout.Children.Add(noteNameLayout);
+
+                // Date
+                noteLayout.Children.Add(new Label
+                {
+                    Text           = note.CreateDate.ToString("dd.MM.yyyy, hh:mm") +
+                                     (note.ModifyDate == note.CreateDate ? "" : (" (úprava " + note.ModifyDate.ToString("dd.MM.yyyy, hh:mm") + ")")),
+                    FontSize       = 16,
+                    FontAttributes = FontAttributes.Italic,
+                    TextColor      = Color.Gray,
+                    LineBreakMode  = LineBreakMode.WordWrap
+                });
+
+                // Separator
+                noteLayout.Children.Add(new BoxView
+                {
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    HeightRequest     = 1,
+                    Color             = Color.Gray
+                });
+
+                // Text
+                noteLayout.Children.Add(new Label
                 {
                     Text          = note.Text,
                     FontSize      = 18,
                     TextColor     = Color.Black,
                     LineBreakMode = LineBreakMode.WordWrap
-                };
-
-                Button noteButton = new Button
-                {
-                    Text = "⋮",
-                    FontSize = 24
-                };
-
-                noteButton.Clicked += (object sender, EventArgs e) => { EditNoteMenuAsync(note); };
-
-                noteLayout.Children.Add(noteName);
-                noteLayout.Children.Add(noteDate);
-                noteLayout.Children.Add(noteText);
-                noteLayout.Children.Add(noteButton);
+                });
 
                 noteFrame.Content = noteLayout;
-
                 NotesContainer.Children.Add(noteFrame);
             }
         }
@@ -94,7 +121,7 @@ namespace NoteApp
 
         private async Task EditNoteMenuAsync(Note note)
         {
-            string action = await DisplayActionSheet("Upravit poznámku", "Zrušit", "Smazat", "Upravit");
+            string action = await DisplayActionSheet("Vyberte akci", "Zrušit", "Smazat", "Upravit");
             
             switch (action)
             {

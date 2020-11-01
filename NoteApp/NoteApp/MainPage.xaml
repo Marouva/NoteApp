@@ -9,7 +9,9 @@
                 <Button x:Name="AddButton" Text="Přidat poznámku" Clicked="AddButton_Clicked"/>
                 
                 <!-- Notes -->
-                <StackLayout x:Name="NotesContainer"></StackLayout>
+                <StackLayout x:Name="NotesContainer" Spacing="16">
+                    
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

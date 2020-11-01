@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteApp.EditNote">
     <ContentPage.Content>
-        <StackLayout Margin="16">
+        <StackLayout Margin="16" Spacing="8">
             <Entry x:Name="Name" Placeholder="Název"/>
-            <Entry x:Name="Text" Placeholder="Obsah"/>
+            <Editor x:Name="Text" Placeholder="Obsah" HeightRequest="120"/>
             <Button x:Name="Submit" Text="Upravit" Clicked="Submit_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
